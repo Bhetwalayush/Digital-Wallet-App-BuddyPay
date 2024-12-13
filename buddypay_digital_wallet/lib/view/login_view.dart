@@ -6,6 +6,7 @@ class LoginView extends StatefulWidget {
   const LoginView({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _LoginViewState createState() => _LoginViewState();
 }
 
@@ -144,7 +145,10 @@ class _LoginViewState extends State<LoginView> {
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                   ),
-                  child: const Text('LOGIN'),
+                  // child: const Text('LOGIN'),
+                  child: _isLoading
+                      ? const CircularProgressIndicator(color: Colors.white)
+                      : const Text('LOGIN'),
                 ),
 
               ],
