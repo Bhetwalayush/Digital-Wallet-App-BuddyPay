@@ -1,3 +1,4 @@
+import 'package:buddypay_digital_wallet/view/account_created_view.dart';
 import 'package:flutter/material.dart';
 import '../viewmodels/signup_viewmodel.dart';
 
@@ -17,7 +18,9 @@ class _ChoosePinViewState extends State<ChoosePinView> {
   void _navigateBackToSignup() {
     Navigator.pop(context);
   }
-
+  void _congratspage(){
+    
+  }
   // Method to save PIN and send data to the database
   void _saveAndCompleteSignup() async {
     if (_pinController.text.trim().length != 4) {
@@ -26,7 +29,7 @@ class _ChoosePinViewState extends State<ChoosePinView> {
           content: Text("Please enter a 4-digit PIN."),
         ),
       );
-      return;
+      return ;
     }
 
     // Save PIN in the ViewModel
@@ -92,7 +95,13 @@ class _ChoosePinViewState extends State<ChoosePinView> {
             ),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: _saveAndCompleteSignup, // Save PIN and complete signup
+              // onPressed: _saveAndCompleteSignup, // Save PIN and complete signup
+              onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const CongratsView()),
+                    );
+                  },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.teal,
                 minimumSize: const Size(double.infinity, 50),
