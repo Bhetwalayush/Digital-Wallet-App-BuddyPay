@@ -1,3 +1,4 @@
+import 'package:buddypay_digital_wallet/view/homepage_view.dart';
 import 'package:flutter/material.dart';
 import '../viewmodels/login_viewmodel.dart';
 
@@ -116,8 +117,26 @@ class _LoginViewState extends State<LoginView> {
                   ],
                 ),
                 const SizedBox(height: 20),
+                // ElevatedButton(
+                //   onPressed: _isLoading ? null : _login,
+                //   style: ElevatedButton.styleFrom(
+                //     backgroundColor: Colors.teal,
+                //     minimumSize: const Size(double.infinity, 50),
+                //     shape: RoundedRectangleBorder(
+                //       borderRadius: BorderRadius.circular(10.0),
+                //     ),
+                //   ),
+                //   child: _isLoading
+                //       ? const CircularProgressIndicator(color: Colors.white)
+                //       : const Text('LOGIN'),
+                // ),
                 ElevatedButton(
-                  onPressed: _isLoading ? null : _login,
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const HomePage()),
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.teal,
                     minimumSize: const Size(double.infinity, 50),
@@ -125,10 +144,9 @@ class _LoginViewState extends State<LoginView> {
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                   ),
-                  child: _isLoading
-                      ? const CircularProgressIndicator(color: Colors.white)
-                      : const Text('LOGIN'),
+                  child: const Text('LOGIN'),
                 ),
+
               ],
             ),
           ),
