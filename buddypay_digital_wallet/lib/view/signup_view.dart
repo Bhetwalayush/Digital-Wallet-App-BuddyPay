@@ -26,6 +26,34 @@ class _SignupViewState extends State<SignupView> {
   );
 }
 
+  void _onConfirm() {
+    final fullName = _fullNameController.text.trim();
+    final phone = _phoneController.text.trim();
+    final password = _passwordController.text.trim();
+    final confirmPassword = _confirmPasswordController.text.trim();
+
+    if (fullName.isEmpty || phone.isEmpty || password.isEmpty || confirmPassword.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Please fill in all the fields.")),
+      );
+      return;
+    }
+
+    if (password != confirmPassword) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Passwords do not match.")),
+      );
+      return;
+    }
+
+    // Save user info and navigate to ChoosePinView
+    _viewModel.signup(
+      fullName: fullName,
+      phone: phone,
+      password: password,
+    );
+    _goToChoosePinPage();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -112,14 +140,7 @@ class _SignupViewState extends State<SignupView> {
                 ),
                 const SizedBox(height: 20),
                 ElevatedButton(
-                  onPressed: () {
-                    _viewModel.signup(
-                      fullName: _fullNameController.text.trim(),
-                      phone: _phoneController.text.trim(),
-                      password: _passwordController.text.trim(),
-                    );
-                    _goToChoosePinPage();
-                  },
+                  onPressed: _onConfirm,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.teal,
                     minimumSize: const Size(double.infinity, 50),
