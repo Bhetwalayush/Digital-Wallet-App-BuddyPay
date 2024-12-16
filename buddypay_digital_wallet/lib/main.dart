@@ -1,5 +1,6 @@
-import 'package:buddypay_digital_wallet/view/landing_page.dart';
+// import 'package:buddypay_digital_wallet/view/landing_page.dart';
 import 'package:buddypay_digital_wallet/view/login_view.dart';
+import 'package:buddypay_digital_wallet/view/onboarding_view.dart';
 import 'package:buddypay_digital_wallet/view/signup_view.dart';
 import 'package:flutter/material.dart';
 void main() {
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(primarySwatch: Colors.teal),
       initialRoute: '/',
       routes: {
-        '/': (context) => const LandingPage(),
+        '/': (context) => const OnboardingView(),
         '/login': (context) => const LoginView(),
         '/signup': (context) => const SignupView(),
       },

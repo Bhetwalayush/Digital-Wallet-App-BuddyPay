@@ -12,7 +12,7 @@ class HomePage extends StatelessWidget {
         elevation: 0,
         title: const Text(
           'Hi! Ayush',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
         ),
         actions: [
           IconButton(
