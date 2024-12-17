@@ -1,5 +1,6 @@
 import 'package:buddypay_digital_wallet/view/homepage_view.dart';
 import 'package:flutter/material.dart';
+
 import '../viewmodels/login_viewmodel.dart';
 
 class LoginView extends StatefulWidget {
@@ -57,7 +58,7 @@ class _LoginViewState extends State<LoginView> {
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const SizedBox(height: 20),
                 const Text(
@@ -150,7 +151,6 @@ class _LoginViewState extends State<LoginView> {
                       ? const CircularProgressIndicator(color: Colors.white)
                       : const Text('LOGIN'),
                 ),
-
               ],
             ),
           ),

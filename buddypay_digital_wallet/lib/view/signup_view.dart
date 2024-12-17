@@ -1,5 +1,6 @@
 import 'package:buddypay_digital_wallet/view/choosepin_view.dart';
 import 'package:flutter/material.dart';
+
 import '../viewmodels/signup_viewmodel.dart';
 
 class SignupView extends StatefulWidget {
@@ -15,16 +16,17 @@ class _SignupViewState extends State<SignupView> {
   final TextEditingController _fullNameController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
 
   void _goToChoosePinPage() {
-  Navigator.push(
-    context,
-    MaterialPageRoute(
-      builder: (context) => ChoosePinView(viewModel: _viewModel),
-    ),
-  );
-}
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ChoosePinView(viewModel: _viewModel),
+      ),
+    );
+  }
 
   void _onConfirm() {
     final fullName = _fullNameController.text.trim();
@@ -32,7 +34,10 @@ class _SignupViewState extends State<SignupView> {
     final password = _passwordController.text.trim();
     final confirmPassword = _confirmPasswordController.text.trim();
 
-    if (fullName.isEmpty || phone.isEmpty || password.isEmpty || confirmPassword.isEmpty) {
+    if (fullName.isEmpty ||
+        phone.isEmpty ||
+        password.isEmpty ||
+        confirmPassword.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Please fill in all the fields.")),
       );
@@ -65,7 +70,7 @@ class _SignupViewState extends State<SignupView> {
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const Text(
                   'Get Started',
