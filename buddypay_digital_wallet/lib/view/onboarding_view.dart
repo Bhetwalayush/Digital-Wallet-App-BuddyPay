@@ -2,7 +2,7 @@ import 'package:buddypay_digital_wallet/view/landing_page.dart';
 import 'package:flutter/material.dart';
 
 class OnboardingView extends StatefulWidget {
-  const OnboardingView({Key? key}) : super(key: key);
+  const OnboardingView({super.key});
 
   @override
   State<OnboardingView> createState() => _OnboardingViewState();
@@ -15,7 +15,8 @@ class _OnboardingViewState extends State<OnboardingView> {
   final List<Map<String, String>> _onboardingData = [
     {
       "title": "Send Money",
-      "description": "Send money with BuddyPay. Your payment buddy and partner.",
+      "description":
+          "Send money with BuddyPay. Your payment buddy and partner.",
     },
     {
       "title": "Receive Money",
@@ -23,7 +24,8 @@ class _OnboardingViewState extends State<OnboardingView> {
     },
     {
       "title": "Load Balance",
-      "description": "Easily load money to your BuddyPay wallet and get started.",
+      "description":
+          "Easily load money to your BuddyPay wallet and get started.",
     },
   ];
 
@@ -37,7 +39,7 @@ class _OnboardingViewState extends State<OnboardingView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      // backgroundColor: Colors.black,
       body: Stack(
         children: [
           Column(
@@ -76,7 +78,9 @@ class _OnboardingViewState extends State<OnboardingView> {
                             ),
                           ),
                           const Spacer(),
-                          if (index == _onboardingData.length - 1) // Only show on last page
+                          if (index ==
+                              _onboardingData.length -
+                                  1) // Only show on last page
                             ElevatedButton(
                               onPressed: _goToLandingPage,
                               style: ElevatedButton.styleFrom(

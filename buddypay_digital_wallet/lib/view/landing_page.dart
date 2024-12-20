@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+
 import 'login_view.dart';
 import 'signup_view.dart';
 
 class LandingPage extends StatelessWidget {
-  const LandingPage({Key? key}) : super(key: key);
+  const LandingPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF00C9A7), // Background color
+      // backgroundColor: const Color(0xFF00C9A7), // Background color
       body: SafeArea(
         child: Center(
           child: Padding(
@@ -20,8 +21,7 @@ class LandingPage extends StatelessWidget {
                   children: [
                     // App Icon
                     Image.asset(
-                      'assets/icon/logo.png', // Replace with your logo path
-                      height: 100,
+                      'assets/icon/logo.png',
                       width: 100,
                     ),
                     const SizedBox(height: 20),
@@ -59,8 +59,8 @@ class LandingPage extends StatelessWidget {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        foregroundColor: const Color(0xFF00C9A7),
+                        // backgroundColor: Colors.white,
+                        // foregroundColor: const Color(0xFF00C9A7),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),
                         ),
@@ -79,8 +79,8 @@ class LandingPage extends StatelessWidget {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF00C9A7),
-                        foregroundColor: Colors.white,
+                        foregroundColor: const Color(0xFF00C9A7),
+                        backgroundColor: Colors.white,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),
                           side: const BorderSide(color: Colors.white),
@@ -92,17 +92,17 @@ class LandingPage extends StatelessWidget {
                   ],
                 ),
                 // Footer Design
-                Column(
+                const Column(
                   children: [
-                    const SizedBox(height: 10),
-                    const Text(
+                    SizedBox(height: 10),
+                    Text(
                       'Designed for you',
                       style: TextStyle(
                         fontSize: 14,
                         color: Colors.white70,
                       ),
                     ),
-                    const SizedBox(height: 5),
+                    SizedBox(height: 5),
                     Icon(
                       Icons.favorite,
                       color: Colors.white70,

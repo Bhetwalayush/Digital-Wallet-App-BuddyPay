@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../viewmodels/signup_viewmodel.dart';
 
 class SignupView extends StatefulWidget {
-  const SignupView({Key? key}) : super(key: key);
+  const SignupView({super.key});
 
   @override
   State<SignupView> createState() => _SignupViewState();
@@ -63,7 +63,7 @@ class _SignupViewState extends State<SignupView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      // backgroundColor: Colors.black,
       body: Stack(
         children: [
           Padding(
