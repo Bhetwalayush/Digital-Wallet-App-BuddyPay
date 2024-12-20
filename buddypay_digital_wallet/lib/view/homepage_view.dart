@@ -1,3 +1,14 @@
+import 'package:buddypay_digital_wallet/view/activity_view.dart';
+import 'package:buddypay_digital_wallet/view/additional_options_view.dart';
+import 'package:buddypay_digital_wallet/view/contacts_view.dart';
+import 'package:buddypay_digital_wallet/view/history_view.dart';
+import 'package:buddypay_digital_wallet/view/notification_view.dart';
+import 'package:buddypay_digital_wallet/view/profile_view.dart';
+import 'package:buddypay_digital_wallet/view/qr_code_view.dart';
+import 'package:buddypay_digital_wallet/view/request_credits_view.dart';
+import 'package:buddypay_digital_wallet/view/send_credits_view.dart';
+import 'package:buddypay_digital_wallet/view/topup_view.dart';
+import 'package:buddypay_digital_wallet/view/transactions_view.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -14,7 +25,7 @@ class HomePage extends StatelessWidget {
             CircleAvatar(
               radius: 18,
               backgroundImage: AssetImage(
-                  'assets/profile.jpg'), // Add your profile image here
+                  'assets/images/profile.png'), // Add your profile image here
             ),
             SizedBox(width: 10),
             Text(
@@ -29,7 +40,13 @@ class HomePage extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const NotificationView()),
+              );
+            },
             icon: const Icon(Icons.notifications_none),
             color: Colors.white,
           ),
@@ -65,7 +82,7 @@ class HomePage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text(
-                          'Rs 29,000.45',
+                          'Rs 0.00',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 32,
@@ -99,7 +116,13 @@ class HomePage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         ElevatedButton.icon(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const SendCredits()),
+                            );
+                          },
                           icon: const Icon(Icons.send),
                           label: const Text(
                             'SEND',
@@ -114,7 +137,13 @@ class HomePage extends StatelessWidget {
                           ),
                         ),
                         ElevatedButton.icon(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const RequestCredits()),
+                            );
+                          },
                           icon: const Icon(Icons.request_page),
                           label: const Text(
                             'REQUEST',
@@ -142,14 +171,17 @@ class HomePage extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
-                    _buildFeatureButton('Top Up', Icons.account_balance_wallet),
+                    _buildFeatureButton('Top Up', Icons.account_balance_wallet,
+                        context, const Topup()),
                     const SizedBox(width: 20),
-                    _buildFeatureButton('History', Icons.history),
+                    _buildFeatureButton(
+                        'History', Icons.history, context, const History()),
                     const SizedBox(width: 20),
-                    _buildFeatureButton('Activity', Icons.list),
+                    _buildFeatureButton(
+                        'Activity', Icons.list, context, const Activity()),
                     const SizedBox(width: 20),
-                    _buildFeatureButton('More', Icons.more_horiz),
-                    const SizedBox(width: 20),
+                    _buildFeatureButton('More', Icons.more_horiz, context,
+                        const AdditionalOptions()),
                   ],
                 ),
               ),
@@ -166,12 +198,24 @@ class HomePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const HomePage()),
+                      );
+                    },
                     icon: const Icon(Icons.home, color: Colors.teal),
                     iconSize: 30,
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Transactions()),
+                      );
+                    },
                     icon: const Icon(Icons.sync_alt, color: Colors.white),
                   ),
                   Container(
@@ -181,19 +225,37 @@ class HomePage extends StatelessWidget {
                       shape: BoxShape.circle,
                     ),
                     child: IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const QrCode()),
+                        );
+                      },
                       icon: const Icon(Icons.qr_code_scanner,
                           color: Colors.white),
                       iconSize: 40,
                     ),
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Contacts()),
+                      );
+                    },
                     icon: const Icon(Icons.contacts, color: Colors.white),
                     iconSize: 30,
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Profile()),
+                      );
+                    },
                     icon: const Icon(Icons.person, color: Colors.white),
                     iconSize: 30,
                   ),
@@ -206,25 +268,36 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _buildFeatureButton(String label, IconData icon) {
-    return Column(
-      children: [
-        Container(
-          width: 110,
-          height: 110,
-          decoration: BoxDecoration(
-            color: const Color(0xFF1E1E1E),
-            borderRadius: BorderRadius.circular(20.0),
-          ),
-          padding: const EdgeInsets.all(20.0),
-          child: Icon(icon, color: Colors.white, size: 60),
+  Widget _buildFeatureButton(
+      String label, IconData icon, BuildContext context, Widget targetPage) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      child: GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => targetPage),
+          );
+        },
+        child: Column(
+          children: [
+            Container(
+              width: 90,
+              height: 90,
+              decoration: BoxDecoration(
+                color: const Color(0xFF1E1E1E),
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              child: Icon(icon, color: Colors.white, size: 50),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              label,
+              style: const TextStyle(color: Colors.white70, fontSize: 16),
+            ),
+          ],
         ),
-        const SizedBox(height: 10),
-        Text(
-          label,
-          style: const TextStyle(color: Colors.white70, fontSize: 14),
-        ),
-      ],
+      ),
     );
   }
 }
