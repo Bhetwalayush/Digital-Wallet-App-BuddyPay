@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CongratsView extends StatelessWidget {
-  const CongratsView({Key? key}) : super(key: key);
+  const CongratsView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,8 @@ class CongratsView extends StatelessWidget {
             const SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {
-                Navigator.popUntil(context, (route) => route.isFirst); // Navigate to the main screen
+                Navigator.popUntil(context,
+                    (route) => route.isFirst); // Navigate to the main screen
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.teal,

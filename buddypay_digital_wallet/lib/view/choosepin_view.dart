@@ -1,11 +1,19 @@
+import 'package:buddypay_digital_wallet/features/auth/presentation/viewmodels/bloc/signup/signup_bloc.dart';
 import 'package:buddypay_digital_wallet/view/account_created_view.dart';
 import 'package:flutter/material.dart';
-import '../viewmodels/signup_viewmodel.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ChoosePinView extends StatefulWidget {
-  final SignupViewModel viewModel;
+  final String fullname;
+  final String phone;
+  final String password;
 
-  const ChoosePinView({Key? key, required this.viewModel}) : super(key: key);
+  const ChoosePinView({
+    super.key,
+    required this.fullname,
+    required this.phone,
+    required this.password,
+  });
 
   @override
   State<ChoosePinView> createState() => _ChoosePinViewState();
@@ -14,37 +22,37 @@ class ChoosePinView extends StatefulWidget {
 class _ChoosePinViewState extends State<ChoosePinView> {
   final TextEditingController _pinController = TextEditingController();
 
-  // Method to navigate back to the signup page
-  void _navigateBackToSignup() {
-    Navigator.pop(context);
-  }
-  void _congratspage(){
-    
-  }
-  // Method to save PIN and send data to the database
-  void _saveAndCompleteSignup() async {
-    if (_pinController.text.trim().length != 4) {
+  void _saveAndCompleteSignup() {
+    final pin = _pinController.text.trim();
+
+    if (pin.length != 4) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text("Please enter a 4-digit PIN."),
-        ),
+        const SnackBar(content: Text("Please enter a 4-digit PIN.")),
       );
-      return ;
+      return;
     }
 
-    // Save PIN in the ViewModel
-    widget.viewModel.setPin(_pinController.text.trim());
+    // Dispatch the event to SignupBloc
+    try {
+      BlocProvider.of<SignupBloc>(context).add(
+        RegisterUser(
+          context: context,
+          fullname: widget.fullname,
+          phone: widget.phone,
+          password: widget.password,
+          pin: pin,
+          device: "mobile",
+        ),
+      );
 
-    // Save all data to the database
-    bool success = await widget.viewModel.saveUser();
-
-    if (success) {
+      // Navigate to the account creation success view
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const CongratsView()),
+      );
+    } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Signup successful!")));
-      Navigator.popUntil(context, ModalRoute.withName('/')); // Navigate to the main screen
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Signup failed. Please try again.")),
+        SnackBar(content: Text("An error occurred: ${e.toString()}")),
       );
     }
   }
@@ -58,7 +66,7 @@ class _ChoosePinViewState extends State<ChoosePinView> {
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.close, color: Colors.white),
-          onPressed: _navigateBackToSignup, // Navigate back to signup screen
+          onPressed: () => Navigator.pop(context),
         ),
       ),
       body: Padding(
@@ -95,13 +103,7 @@ class _ChoosePinViewState extends State<ChoosePinView> {
             ),
             const SizedBox(height: 20),
             ElevatedButton(
-              // onPressed: _saveAndCompleteSignup, // Save PIN and complete signup
-              onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const CongratsView()),
-                    );
-                  },
+              onPressed: _saveAndCompleteSignup,
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.teal,
                 minimumSize: const Size(double.infinity, 50),
@@ -109,7 +111,7 @@ class _ChoosePinViewState extends State<ChoosePinView> {
                   borderRadius: BorderRadius.circular(10.0),
                 ),
               ),
-              child: const Text('SAVE'),
+              child: const Text('CONFIRM'),
             ),
           ],
         ),

@@ -1,7 +1,6 @@
+import 'package:buddypay_digital_wallet/features/landing_page/cubit/landing_page_cubit.dart';
 import 'package:flutter/material.dart';
-
-import 'login_view.dart';
-import 'signup_view.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});
@@ -51,12 +50,13 @@ class LandingPage extends StatelessWidget {
                   children: [
                     ElevatedButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const LoginView(),
-                          ),
-                        );
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //     builder: (context) => const LoginView(),
+                        //   ),
+                        // );
+                        context.read<LandingPageCubit>().openLoginView(context);
                       },
                       style: ElevatedButton.styleFrom(
                         // backgroundColor: Colors.white,
@@ -71,12 +71,15 @@ class LandingPage extends StatelessWidget {
                     const SizedBox(height: 20),
                     ElevatedButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const SignupView(),
-                          ),
-                        );
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //     builder: (context) => const SignupView(),
+                        //   ),
+                        // );
+                        context
+                            .read<LandingPageCubit>()
+                            .openSignupView(context);
                       },
                       style: ElevatedButton.styleFrom(
                         foregroundColor: const Color(0xFF00C9A7),
