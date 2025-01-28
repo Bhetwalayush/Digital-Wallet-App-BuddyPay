@@ -1,4 +1,4 @@
-import 'package:buddypay_digital_wallet/app.dart';
+import 'package:buddypay_digital_wallet/app/app.dart';
 import 'package:buddypay_digital_wallet/app/di/di.dart';
 import 'package:buddypay_digital_wallet/core/network/hive_service.dart';
 import 'package:flutter/material.dart';

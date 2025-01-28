@@ -6,6 +6,9 @@ import 'package:buddypay_digital_wallet/features/auth/domain/use_case/signup_use
 import 'package:buddypay_digital_wallet/features/auth/presentation/viewmodels/bloc/login/login_bloc.dart';
 import 'package:buddypay_digital_wallet/features/auth/presentation/viewmodels/bloc/signup/signup_bloc.dart';
 import 'package:buddypay_digital_wallet/features/landing_page/cubit/landing_page_cubit.dart';
+import 'package:buddypay_digital_wallet/features/on_boarding/cubit/on_boarding_cubit.dart';
+import 'package:buddypay_digital_wallet/features/splash/presentation/view_model/splash_cubit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 final getIt = GetIt.instance;
@@ -17,12 +20,26 @@ Future<void> initDependencies() async {
   await _initLandingPageDependencies();
   await _initRegisterDependencies();
   await _initLoginDependencies();
-
-  // await _initSplashScreenDependencies();
+  await _initSplashDependencies();
+  await _initOnboardingDependencies();
 }
 
 _initHiveService() {
   getIt.registerLazySingleton<HiveService>(() => HiveService());
+}
+
+_initSplashDependencies() async {
+  getIt.registerFactory<SplashCubit>(
+    () => SplashCubit(getIt<OnboardingCubit>()),
+    // () => SplashCubit(getIt<LoginBloc>()),
+  );
+}
+
+_initOnboardingDependencies() async {
+  getIt.registerFactory<OnboardingCubit>(
+    () => OnboardingCubit(getIt<LandingPageCubit>()),
+    // () => SplashCubit(getIt<LoginBloc>()),
+  );
 }
 
 _initRegisterDependencies() {
@@ -36,7 +53,7 @@ _initRegisterDependencies() {
     () => AuthLocalRepository(getIt<AuthLocalDataSource>()),
   );
 
-  // register use usecase
+  // register use case
   getIt.registerLazySingleton<RegisterUseCase>(
     () => RegisterUseCase(
       getIt<AuthLocalRepository>(),
@@ -72,8 +89,22 @@ _initLoginDependencies() async {
   );
 }
 
-// _initSplashScreenDependencies() async {
-//   getIt.registerFactory<SplashCubit>(
-//     () => SplashCubit(getIt<LoginBloc>()),
-//   );
-// }
+List<BlocProvider> getBlocProviders() {
+  return [
+    BlocProvider<LandingPageCubit>(
+      create: (_) => getIt<LandingPageCubit>(),
+    ),
+    BlocProvider<SignupBloc>(
+      create: (_) => getIt<SignupBloc>(),
+    ),
+    BlocProvider<LoginBloc>(
+      create: (_) => getIt<LoginBloc>(),
+    ),
+    BlocProvider<SplashCubit>(
+      create: (_) => getIt<SplashCubit>(),
+    ),
+    BlocProvider<OnboardingCubit>(
+      create: (_) => getIt<OnboardingCubit>(),
+    ),
+  ];
+}
