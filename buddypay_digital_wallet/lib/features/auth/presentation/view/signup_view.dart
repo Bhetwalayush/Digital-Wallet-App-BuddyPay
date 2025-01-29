@@ -1,5 +1,5 @@
+import 'package:buddypay_digital_wallet/features/auth/presentation/view/choosepin_view.dart';
 import 'package:buddypay_digital_wallet/features/landing_page/view/landing_page.dart';
-import 'package:buddypay_digital_wallet/view/choosepin_view.dart';
 import 'package:flutter/material.dart';
 
 class SignupView extends StatefulWidget {

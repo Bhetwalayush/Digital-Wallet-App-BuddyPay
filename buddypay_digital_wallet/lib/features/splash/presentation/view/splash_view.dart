@@ -40,7 +40,7 @@ class _SplashViewState extends State<SplashView> {
                 const SizedBox(height: 10),
                 const CircularProgressIndicator(),
                 const SizedBox(height: 10),
-                const Text('version : 1.0.0')
+                // const Text('version : 1.0.0')
               ],
             ),
           ),
