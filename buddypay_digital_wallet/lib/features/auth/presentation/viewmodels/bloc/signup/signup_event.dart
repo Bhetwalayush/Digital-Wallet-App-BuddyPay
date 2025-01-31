@@ -7,6 +7,14 @@ sealed class SignupEvent extends Equatable {
   List<Object> get props => [];
 }
 
+class UploadImage extends SignupEvent {
+  final File file;
+
+  const UploadImage({
+    required this.file,
+  });
+}
+
 class RegisterUser extends SignupEvent {
   final BuildContext context;
   final String fullname;
@@ -14,6 +22,7 @@ class RegisterUser extends SignupEvent {
   final String password;
   final String pin;
   final String device;
+  final String? image;
 
   const RegisterUser({
     required this.context,
@@ -22,5 +31,6 @@ class RegisterUser extends SignupEvent {
     required this.password,
     required this.pin,
     this.device = "mobile",
+    this.image,
   });
 }
