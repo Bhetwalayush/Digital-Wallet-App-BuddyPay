@@ -12,16 +12,16 @@ class AuthApiModel extends Equatable {
   final String phone;
   final String? password;
   final String pin;
-  // final String? image;
+  final String? image;
   final String device;
 
   const AuthApiModel({
     this.id,
     required this.fullname,
     required this.phone,
-    // required this.image,
     required this.password,
     required this.pin,
+    required this.image,
     required this.device,
   });
 
@@ -38,7 +38,7 @@ class AuthApiModel extends Equatable {
       phone: phone,
       password: password ?? '',
       pin: pin,
-      // image: image,
+      image: image,
       device: device,
     );
   }
@@ -50,11 +50,12 @@ class AuthApiModel extends Equatable {
       phone: entity.phone,
       password: entity.password,
       pin: entity.pin,
-      // image: entity.image,
+      image: entity.image,
       device: entity.device,
     );
   }
 
   @override
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props =>
+      [id, fullname, image, phone, pin, device, password];
 }
