@@ -1,5 +1,7 @@
+import 'dart:io';
+
 import 'package:buddypay_digital_wallet/core/error/failure.dart';
-import 'package:buddypay_digital_wallet/features/auth/data/data_source/auth_remote_datasource/auth_local_datasource.dart';
+import 'package:buddypay_digital_wallet/features/auth/data/data_source/auth_remote_datasource/auth_remote_datasource.dart';
 import 'package:buddypay_digital_wallet/features/auth/domain/entity/auth_entity.dart';
 import 'package:buddypay_digital_wallet/features/auth/domain/repository/auth_repository.dart';
 import 'package:dartz/dartz.dart';
@@ -33,6 +35,16 @@ class AuthRemoteRepository implements IAuthRepository {
     try {
       await _authRemoteDataSource.registerUser(user);
       return const Right(null);
+    } catch (e) {
+      return Left(ApiFailure(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> uploadProfilePicture(File file) async {
+    try {
+      final imageName = await _authRemoteDataSource.uploadProfilePicture(file);
+      return Right(imageName);
     } catch (e) {
       return Left(ApiFailure(message: e.toString()));
     }
