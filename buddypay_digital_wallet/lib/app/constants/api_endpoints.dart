@@ -7,4 +7,6 @@ class ApiEndpoints {
 
   static const String login = "user/login";
   static const String register = "user/create";
+  static const String imageUrl = "http://10.0.2.2:3000/uploads/";
+  static const String uploadImage = "user/uploadImage";
 }
