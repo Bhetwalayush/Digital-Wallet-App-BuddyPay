@@ -2,6 +2,7 @@ import 'package:buddypay_digital_wallet/app/di/di.dart';
 import 'package:buddypay_digital_wallet/core/app_theme/app_theme.dart';
 import 'package:buddypay_digital_wallet/features/auth/domain/use_case/login_usecase.dart';
 import 'package:buddypay_digital_wallet/features/auth/domain/use_case/signup_user_usecase.dart';
+import 'package:buddypay_digital_wallet/features/auth/domain/use_case/upload_image_usecase.dart';
 import 'package:buddypay_digital_wallet/features/auth/presentation/viewmodels/bloc/login/login_bloc.dart';
 import 'package:buddypay_digital_wallet/features/auth/presentation/viewmodels/bloc/signup/signup_bloc.dart';
 import 'package:buddypay_digital_wallet/features/landing_page/cubit/landing_page_cubit.dart';
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => SignupBloc(
             registerUseCase: getIt<RegisterUseCase>(), // Inject RegisterUseCase
+            uploadImageUsecase: getIt<UploadImageUsecase>(),
           ),
         ),
         BlocProvider(
