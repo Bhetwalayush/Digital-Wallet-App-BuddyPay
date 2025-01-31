@@ -1,11 +1,12 @@
 import 'package:buddypay_digital_wallet/core/network/api_service.dart';
 import 'package:buddypay_digital_wallet/core/network/hive_service.dart';
 import 'package:buddypay_digital_wallet/features/auth/data/data_source/auth_local_datasource/auth_local_datasource.dart';
-import 'package:buddypay_digital_wallet/features/auth/data/data_source/auth_remote_datasource/auth_local_datasource.dart';
+import 'package:buddypay_digital_wallet/features/auth/data/data_source/auth_remote_datasource/auth_remote_datasource.dart';
 import 'package:buddypay_digital_wallet/features/auth/data/repository/auth_local_repository/auth_local_repository.dart';
 import 'package:buddypay_digital_wallet/features/auth/data/repository/auth_remote_repository/auth_remote_repository.dart';
 import 'package:buddypay_digital_wallet/features/auth/domain/use_case/login_usecase.dart';
 import 'package:buddypay_digital_wallet/features/auth/domain/use_case/signup_user_usecase.dart';
+import 'package:buddypay_digital_wallet/features/auth/domain/use_case/upload_image_usecase.dart';
 import 'package:buddypay_digital_wallet/features/auth/presentation/viewmodels/bloc/login/login_bloc.dart';
 import 'package:buddypay_digital_wallet/features/auth/presentation/viewmodels/bloc/signup/signup_bloc.dart';
 import 'package:buddypay_digital_wallet/features/landing_page/cubit/landing_page_cubit.dart';
@@ -83,10 +84,16 @@ _initRegisterDependencies() {
       getIt<AuthRemoteRepository>(),
     ),
   );
+  getIt.registerLazySingleton<UploadImageUsecase>(
+    () => UploadImageUsecase(
+      getIt<AuthRemoteRepository>(),
+    ),
+  );
 
   getIt.registerLazySingleton<SignupBloc>(
     () => SignupBloc(
       registerUseCase: getIt(),
+      uploadImageUsecase: getIt(),
     ),
   );
 }
