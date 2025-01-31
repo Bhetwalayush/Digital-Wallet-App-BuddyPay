@@ -7,12 +7,14 @@ class ChoosePinView extends StatefulWidget {
   final String fullname;
   final String phone;
   final String password;
+  final String? image;
 
   const ChoosePinView({
     super.key,
     required this.fullname,
     required this.phone,
     required this.password,
+    this.image,
   });
 
   @override
@@ -34,6 +36,9 @@ class _ChoosePinViewState extends State<ChoosePinView> {
 
     // Dispatch the event to SignupBloc
     try {
+      print("Final image being sent to database: ${widget.image}");
+      final registerState = context.read<SignupBloc>().state;
+      final imageName = registerState.imageName;
       BlocProvider.of<SignupBloc>(context).add(
         RegisterUser(
           context: context,
@@ -41,6 +46,7 @@ class _ChoosePinViewState extends State<ChoosePinView> {
           phone: widget.phone,
           password: widget.password,
           pin: pin,
+          image: imageName,
           device: "mobile",
         ),
       );
