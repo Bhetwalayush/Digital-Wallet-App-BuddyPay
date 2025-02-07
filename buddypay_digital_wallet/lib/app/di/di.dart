@@ -1,3 +1,4 @@
+import 'package:buddypay_digital_wallet/app/shared_prefs/token_shared_prefs.dart';
 import 'package:buddypay_digital_wallet/core/network/api_service.dart';
 import 'package:buddypay_digital_wallet/core/network/hive_service.dart';
 import 'package:buddypay_digital_wallet/features/auth/data/data_source/auth_local_datasource/auth_local_datasource.dart';
@@ -14,6 +15,7 @@ import 'package:buddypay_digital_wallet/features/on_boarding/cubit/on_boarding_c
 import 'package:buddypay_digital_wallet/features/splash/presentation/view_model/splash_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final getIt = GetIt.instance;
 
@@ -24,9 +26,14 @@ Future<void> initDependencies() async {
   await _initLandingPageDependencies();
   await _initRegisterDependencies();
   await _initLoginDependencies();
-
+  await _initSharedPreferences();
   await _initSplashScreenDependencies();
   await _initOnboardingDependencies();
+}
+
+Future<void> _initSharedPreferences() async {
+  final sharedPreferences = await SharedPreferences.getInstance();
+  getIt.registerLazySingleton<SharedPreferences>(() => sharedPreferences);
 }
 
 _initApiService() {
@@ -114,6 +121,7 @@ _initLoginDependencies() async {
   getIt.registerLazySingleton<LoginUseCase>(
     () => LoginUseCase(
       getIt<AuthRemoteRepository>(),
+      getIt<TokenSharedPrefs>(),
     ),
   );
 
