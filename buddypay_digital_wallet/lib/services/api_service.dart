@@ -1,10 +1,13 @@
 import 'dart:convert';
+
 import 'package:http/http.dart' as http;
-import '../models/login_model.dart';
-import '../models/signup_model.dart';
+
+import '../features/auth/data/models/login_model.dart';
+import '../features/auth/data/models/signup_model.dart';
 
 class ApiService {
-  final String _baseUrl = 'http://localhost:5000'; // Replace with actual API URL
+  final String _baseUrl =
+      'http://localhost:3000'; // Replace with actual API URL
 
   // Login API
   Future<bool> login(User user) async {

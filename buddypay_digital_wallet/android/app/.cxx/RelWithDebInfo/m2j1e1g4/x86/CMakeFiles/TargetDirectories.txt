@@ -1,0 +1,2 @@
+C:/Users/MSI/Desktop/New folder/New folder/Digital-Wallet-App-BuddyPay/buddypay_digital_wallet/android/app/.cxx/RelWithDebInfo/m2j1e1g4/x86/CMakeFiles/edit_cache.dir
+C:/Users/MSI/Desktop/New folder/New folder/Digital-Wallet-App-BuddyPay/buddypay_digital_wallet/android/app/.cxx/RelWithDebInfo/m2j1e1g4/x86/CMakeFiles/rebuild_cache.dir
