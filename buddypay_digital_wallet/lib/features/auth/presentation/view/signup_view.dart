@@ -23,6 +23,7 @@ class _SignupViewState extends State<SignupView> {
       TextEditingController();
 
   void _goToChoosePinPage(String? imageName) {
+    print("Image being passed to ChoosePinView");
     print("Image being passed to ChoosePinView: $imageName");
     Navigator.push(
       context,
