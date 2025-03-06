@@ -28,6 +28,8 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
     RegisterUser event,
     Emitter<SignupState> emit,
   ) async {
+    // debugPrint("📢 Signing up with image: ${state.imageName}");
+    // debugPrint("📢 Signing up with image: ${event.image}");
     emit(state.copyWith(isLoading: true));
     final result = await _registerUseCase.call(RegisterUserParams(
       fullname: event.fullname,
@@ -35,7 +37,7 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
       password: event.password,
       pin: event.pin,
       device: event.device,
-      image: state.imageName,
+      image: event.image,
     ));
 
     result.fold(

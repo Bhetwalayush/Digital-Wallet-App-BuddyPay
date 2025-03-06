@@ -32,6 +32,17 @@ class LoginUseCase implements UsecaseWithParams<String, LoginParams> {
   @override
   Future<Either<Failure, String>> call(LoginParams params) {
     // IF api then store token in shared preferences
-    return repository.loginUser(params.phone, params.password);
+    return repository.loginUser(params.phone, params.password).then((value) {
+      return value.fold(
+        (failure) => Left(failure),
+        (token) {
+          tokenSharedPrefs.saveToken(token);
+          // tokenSharedPrefs.getToken().then((value) {
+          //   print(value);
+          // });
+          return Right(token);
+        },
+      );
+    });
   }
 }
