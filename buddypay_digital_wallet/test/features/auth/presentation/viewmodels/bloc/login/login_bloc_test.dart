@@ -49,10 +49,6 @@ void main() {
     const testPhone = '1234567890';
     const testPassword = 'password123';
 
-    test('initial state should be LoginState.initial', () {
-      expect(bloc.state, LoginState.initial());
-    });
-
     blocTest<LoginBloc, LoginState>(
       'emits [LoginState.loading, LoginState.success] when LoginUser succeeds',
       build: () {

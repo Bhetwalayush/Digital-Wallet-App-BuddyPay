@@ -116,7 +116,7 @@ class _TransactionsState extends State<Transactions> {
                   MaterialPageRoute(builder: (context) => const Transactions()),
                 );
               },
-              icon: const Icon(Icons.sync_alt),
+              icon: const Icon(Icons.sync_alt, color: Colors.teal),
               iconSize: 30,
             ),
 
@@ -161,7 +161,9 @@ class _TransactionsState extends State<Transactions> {
                   MaterialPageRoute(builder: (context) => const ProfilePage()),
                 );
               },
-              icon: const Icon(Icons.person, color: Colors.teal),
+              icon: const Icon(
+                Icons.person,
+              ),
               iconSize: 30,
             ),
           ],

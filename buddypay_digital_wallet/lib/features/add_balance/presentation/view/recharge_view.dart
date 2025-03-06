@@ -56,7 +56,7 @@ class RechargeScreen extends StatelessWidget {
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white.withOpacity(0.3),
-                      hintText: "Enter amount",
+                      hintText: "Enter Code",
                       hintStyle: const TextStyle(color: Colors.white70),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
