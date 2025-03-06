@@ -48,4 +48,14 @@ class HiveService {
   Future<void> close() async {
     await Hive.close();
   }
+
+  Future<void> save(String key, Map<String, dynamic> data) async {
+    var box = await Hive.openBox('localStorage');
+    await box.put(key, data);
+  }
+
+  Future<Map<String, dynamic>?> get(String key) async {
+    var box = await Hive.openBox('localStorage');
+    return box.get(key) as Map<String, dynamic>?;
+  }
 }

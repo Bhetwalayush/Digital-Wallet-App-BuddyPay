@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:buddypay_digital_wallet/features/auth/domain/entity/auth_entity.dart';
 
 abstract interface class IAuthDataSource {
@@ -5,7 +7,7 @@ abstract interface class IAuthDataSource {
 
   Future<void> registerUser(AuthEntity user);
 
-  Future<AuthEntity> getCurrentUser();
+  Future<void> getCurrentUser();
 
-  // Future<String> uploadProfilePicture(File file);
+  Future<String> uploadProfilePicture(File file);
 }

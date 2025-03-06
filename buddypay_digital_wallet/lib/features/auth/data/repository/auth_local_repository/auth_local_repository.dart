@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:buddypay_digital_wallet/core/error/failure.dart';
 import 'package:buddypay_digital_wallet/features/auth/data/data_source/auth_local_datasource/auth_local_datasource.dart';
 import 'package:buddypay_digital_wallet/features/auth/domain/entity/auth_entity.dart';
@@ -39,5 +41,11 @@ class AuthLocalRepository implements IAuthRepository {
     } catch (e) {
       return Left(LocalDatabaseFailure(message: e.toString()));
     }
+  }
+
+  @override
+  Future<Either<Failure, String>> uploadProfilePicture(File file) {
+    // TODO: implement uploadProfilePicture
+    throw UnimplementedError();
   }
 }
