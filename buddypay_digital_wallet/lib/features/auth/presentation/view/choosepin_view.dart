@@ -1,5 +1,5 @@
+import 'package:buddypay_digital_wallet/features/auth/presentation/view/account_created_view.dart';
 import 'package:buddypay_digital_wallet/features/auth/presentation/viewmodels/bloc/signup/signup_bloc.dart';
-import 'package:buddypay_digital_wallet/view/account_created_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -36,6 +36,7 @@ class _ChoosePinViewState extends State<ChoosePinView> {
 
     // Dispatch the event to SignupBloc
     try {
+      print("HEEEEEEEEEEEEEEEEEEE");
       print("Final image being sent to database: ${widget.image}");
       final registerState = context.read<SignupBloc>().state;
       final imageName = registerState.imageName;
@@ -46,7 +47,7 @@ class _ChoosePinViewState extends State<ChoosePinView> {
           phone: widget.phone,
           password: widget.password,
           pin: pin,
-          image: imageName,
+          image: widget.image,
           device: "mobile",
         ),
       );

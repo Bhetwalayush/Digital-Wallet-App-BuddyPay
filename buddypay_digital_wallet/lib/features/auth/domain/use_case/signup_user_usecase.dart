@@ -33,7 +33,7 @@ class RegisterUserParams extends Equatable {
   });
 
   @override
-  List<Object?> get props => [fullname, phone, image, password, pin, device];
+  List<Object?> get props => [fullname, phone, password, pin, device];
 }
 
 class RegisterUseCase implements UsecaseWithParams<void, RegisterUserParams> {
